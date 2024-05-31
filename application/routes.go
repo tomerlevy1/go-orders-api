@@ -5,6 +5,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/tomerlevy1/go-orders-api/handler"
 )
 
 func loadRoutes() *chi.Mux {
@@ -16,5 +17,17 @@ func loadRoutes() *chi.Mux {
 		w.WriteHeader(http.StatusOK)
 	})
 
+	router.Route("/orders", loadOrderRoutes)
+
 	return router
+}
+
+func loadOrderRoutes(router chi.Router) {
+	orderHandler := &handler.Order{}
+
+	router.Get("/", orderHandler.List)
+	router.Get("/{id}", orderHandler.GetById)
+	router.Post("/", orderHandler.Create)
+	router.Put("/{id}", orderHandler.UpdateById)
+	router.Delete("/{id}", orderHandler.DeleteById)
 }
