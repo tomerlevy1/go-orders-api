@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
+	"os/signal"
 
 	"github.com/tomerlevy1/go-orders-api/application"
 )
@@ -10,10 +12,11 @@ import (
 func main() {
 	app := application.New()
 
-	err := app.Start(context.TODO())
+	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
+	defer cancel()
+
+	err := app.Start(ctx)
 	if err != nil {
-		// what's the difference?
 		fmt.Errorf("failed to start app %w", err)
-		fmt.Println("failed to start app", err)
 	}
 }
