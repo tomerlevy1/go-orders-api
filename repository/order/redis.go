@@ -117,7 +117,7 @@ type FindAllPage struct {
 
 type FindResult struct {
 	Orders []model.Order
-	Cursor uint
+	Cursor uint64
 }
 
 func (r *RedisRepo) FindAll(ctx context.Context, page FindAllPage) (FindResult, error) {
