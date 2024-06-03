@@ -1,5 +1,13 @@
 # An Order API microservice written in Golang
 
+## TODO
+
+- [ ] (TODO) Switch to GoDotEnv and use a `.env` file for the config
+- [ ] (TODO) Move handler & model under the order package
+- [ ] (TODO) Replace reference to the Repo with an interface
+- [ ] (TODO) Support and switch to anoter data store (postgres)
+- [ ] (TODO) Create E2E tests 
+
 ## Notes
 
 ### Modules that we'll use
