@@ -121,7 +121,7 @@ type FindResult struct {
 }
 
 func (r *RedisRepo) FindAll(ctx context.Context, page FindAllPage) (FindResult, error) {
-	txn := r.Client.TxPipeline()
+	txn := r.Client
 	res := txn.SScan(ctx, "orders", page.Offset, "*", int64(page.Size))
 
 	keys, cursor, err := res.Result()
